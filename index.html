@@ -8,13 +8,13 @@
         :root {
             --pink: #ff4da6;
             --dark-pink: #ff1a75;
-            --glass: rgba(255, 255, 255, 0.1);
+            --glass: rgba(255, 255, 255, 0.12);
         }
 
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: radial-gradient(circle at center, #1a0026 0%, #000 100%);
             color: white;
             height: 100vh;
@@ -23,9 +23,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            perspective: 1000px;
         }
 
+        /* Star & Nebula Layer */
         #stars-container {
             position: fixed;
             top: 0;
@@ -38,95 +38,100 @@
         .container {
             z-index: 10;
             width: 90%;
-            max-width: 500px;
+            max-width: 550px;
             text-align: center;
         }
 
-        h1 { font-size: 2.5rem; margin-bottom: 5px; }
+        h1 { font-size: 2.8rem; margin-bottom: 10px; font-weight: 700; }
         
         .glow {
             color: var(--pink);
             text-shadow: 0 0 15px var(--pink), 0 0 30px var(--dark-pink);
-            animation: pulse 2s infinite;
+            animation: pulse 2.5s ease-in-out infinite;
         }
 
         @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.05); opacity: 0.8; }
+            0%, 100% { transform: scale(1); filter: brightness(1); }
+            50% { transform: scale(1.03); filter: brightness(1.3); }
         }
 
         .letter {
             display: none;
             background: var(--glass);
-            padding: 25px;
-            border-radius: 20px;
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-            margin-top: 20px;
-            line-height: 1.6;
-            animation: slideUp 0.8s ease-out;
-            font-size: 1.05rem;
+            padding: 30px;
+            border-radius: 25px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+            line-height: 1.7;
+            animation: fadeIn 1s cubic-bezier(0.22, 1, 0.36, 1);
+            font-size: 1.1rem;
         }
 
-        @keyframes slideUp {
-            from { transform: translateY(30px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(40px) scale(0.9); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         .btn-group {
-            margin-top: 25px;
+            margin-top: 30px;
             display: flex;
             justify-content: center;
-            gap: 15px;
-            min-height: 50px;
+            gap: 20px;
+            position: relative;
         }
 
         button {
-            padding: 12px 25px;
+            padding: 14px 30px;
             border: none;
             border-radius: 50px;
-            font-size: 1rem;
-            font-weight: bold;
+            font-size: 1.1rem;
+            font-weight: 800;
             cursor: pointer;
-            transition: 0.3s;
-            z-index: 100;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
         .btn-main {
-            background: var(--pink);
+            background: linear-gradient(45deg, var(--pink), var(--dark-pink));
             color: white;
-            box-shadow: 0 4px 15px rgba(255, 77, 166, 0.4);
+            z-index: 10;
+        }
+
+        .btn-main:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px var(--pink);
         }
 
         #no-btn {
-            background: rgba(255,255,255,0.1);
-            border: 1px solid white;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.4);
             color: white;
-            transition: 0.1s; /* Faster movement */
+            z-index: 5;
         }
 
         .heart {
             position: fixed;
             bottom: -50px;
             pointer-events: none;
-            z-index: 5;
-            animation: floatUp 4s linear forwards;
+            animation: floatUp 5s linear forwards;
+            filter: drop-shadow(0 0 5px var(--pink));
         }
 
         @keyframes floatUp {
-            to { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
         }
 
         .ring {
-            font-size: 80px;
+            font-size: 100px;
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%) scale(0);
             z-index: 1000;
-            animation: ringPop 0.6s cubic-bezier(0.17, 0.89, 0.32, 1.49) forwards;
+            animation: ringPop 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
 
         @keyframes ringPop {
@@ -138,26 +143,24 @@
 
 <canvas id="stars-container"></canvas>
 
-<div class="container" id="main-content">
+<div class="container">
     <div id="hero-section">
         <h1 class="glow">Sarthak 💖 Dishaa</h1>
-        <p style="letter-spacing: 2px; opacity: 0.8;">UNDER THE INFINITE SKY 🌌</p>
+        <p style="letter-spacing: 3px; font-weight: 300; opacity: 0.9;">UNDER THE INFINITE SKY 🌌</p>
         <button class="btn-main" onclick="openLetter()">Open My Heart 💌</button>
     </div>
 
     <div class="letter" id="letter">
         <div id="proposal-text">
-           Dishaa, aaj main dil se tumse ek baat kehna chahta hoon. 
-Jab tum meri life mein aayi thi, mujhe tab nahi pata tha ki tum meri sab kuch ban jaogi.🥹😚 
-Aaj har subah tumhari yaad se shuru hoti hai aur har raat tumhari soch ke saath khatam hoti hai.🫵🏻🥹 
-Tum meri aadat nahi ho, tum meri zarurat ho.😚 
-Ab mujhe tumhara addiction ho gaya hai.😩 
-Tumhare bina sab kuch adhoora lagta hai.🥺 
-Mai tumhare saath sirf aaj nahi, balki hamesha rehna chahta hoon. 
-Har hasi, har struggle, har success aur har sapna — sab tumhare saath share karna chahta hoon. 
-Mai promise karta hoon ki main hamesha tumhari respect karunga, tumhe protect karunga aur tumhe kabhi akela mehsoos nahi hone dunga.🥹 
-Dishaa, kya tum meri life partner banogi?🫵🏻🥺 
-Kya tum mere saath hamesha ke liye chalogi?🫵🏻🥹</b> 💍
+            Dishaa, aaj main dil se tumse ek baat kehna chahta hoon.<br><br>
+            Jab tum meri life mein aayi thi, mujhe tab nahi pata tha ki tum meri sab kuch ban jaogi. 🥹😚<br> 
+            Aaj har subah tumhari yaad se shuru hoti hai aur har raat tumhari soch ke saath khatam hoti hai. 🫵🏻🥹<br><br>
+            Tum meri aadat nahi ho, <b>tum meri zarurat ho.</b> 😚<br> 
+            Ab mujhe tumhara addiction ho gaya hai. 😩<br> 
+            Tumhare bina sab kuch adhoora lagta hai. 🥺<br><br>
+            Mai promise karta hoon ki main hamesha tumhari respect karunga, tumhe protect karunga aur tumhe kabhi akela mehsoos nahi hone dunga. 🥹<br><br>
+            <b>Dishaa, kya tum meri life partner banogi? 🫵🏻🥺</b><br> 
+            Kya tum mere saath hamesha ke liye chalogi? 🫵🏻🥹 💍
             
             <div class="btn-group">
                 <button class="btn-main" onclick="acceptProposal()">YES! 💖</button>
@@ -168,75 +171,97 @@ Kya tum mere saath hamesha ke liye chalogi?🫵🏻🥹</b> 💍
 </div>
 
 <script>
-    // 1. Starry Background
+    // 1. Enhanced Canvas Engine
     const canvas = document.getElementById('stars-container');
     const ctx = canvas.getContext('2d');
-    let width, height, stars;
+    let width, height, stars = [];
 
-    function initStars() {
+    function init() {
         width = window.innerWidth;
         height = window.innerHeight;
         canvas.width = width;
         canvas.height = height;
-        stars = Array.from({ length: 150 }, () => ({
+        stars = Array.from({ length: 200 }, () => ({
             x: Math.random() * width,
             y: Math.random() * height,
-            size: Math.random() * 1.5,
-            speed: Math.random() * 0.4 + 0.1
+            size: Math.random() * 1.8,
+            speed: Math.random() * 0.5 + 0.1,
+            opacity: Math.random()
         }));
     }
 
-    function drawStars() {
+    function draw() {
         ctx.clearRect(0, 0, width, height);
-        ctx.fillStyle = "white";
         stars.forEach(star => {
+            ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
             ctx.beginPath();
             ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
             ctx.fill();
             star.y -= star.speed;
             if (star.y < 0) star.y = height;
         });
-        requestAnimationFrame(drawStars);
+        
+        // Random Shooting Stars
+        if (Math.random() < 0.01) {
+            drawShootingStar();
+        }
+        requestAnimationFrame(draw);
     }
 
-    window.addEventListener('resize', initStars);
-    initStars();
-    drawStars();
+    function drawShootingStar() {
+        let x = Math.random() * width;
+        let y = Math.random() * height / 2;
+        ctx.strokeStyle = "rgba(255, 255, 255, 0.5)";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.lineTo(x - 50, y + 50);
+        ctx.stroke();
+    }
 
-    // 2. Floating Hearts (The magic you asked for)
+    window.addEventListener('resize', init);
+    init();
+    draw();
+
+    // 2. Heart Rain
     function createHeart() {
         const heart = document.createElement("div");
         heart.className = "heart";
-        const emojis = ["💖", "💗", "💓", "✨", "🌸"];
-        heart.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+        const icons = ["💖", "💗", "💓", "✨", "🌸", "🌹"];
+        heart.innerHTML = icons[Math.floor(Math.random() * icons.length)];
         heart.style.left = Math.random() * 100 + "vw";
-        heart.style.fontSize = (Math.random() * 20 + 15) + "px";
-        heart.style.duration = (Math.random() * 3 + 3) + "s";
+        heart.style.fontSize = (Math.random() * 25 + 15) + "px";
         document.body.appendChild(heart);
         setTimeout(() => heart.remove(), 5000);
     }
-    setInterval(createHeart, 400);
+    setInterval(createHeart, 350);
 
-    // 3. UI Logic
+    // 3. UI Interactions
     function openLetter() {
-        document.getElementById("hero-section").style.display = "none";
-        document.getElementById("letter").style.display = "block";
+        document.getElementById("hero-section").style.opacity = "0";
+        setTimeout(() => {
+            document.getElementById("hero-section").style.display = "none";
+            document.getElementById("letter").style.display = "block";
+        }, 500);
     }
 
     function moveNoButton() {
         const btn = document.getElementById("no-btn");
-        // Ensures the button moves within the visible screen
-        const x = Math.random() * (window.innerWidth - btn.offsetWidth);
-        const y = Math.random() * (window.innerHeight - btn.offsetHeight);
+        // Improved logic: keeps button away from mouse but inside viewport
+        const offset = 100;
+        let x = Math.random() * (window.innerWidth - btn.offsetWidth - offset);
+        let y = Math.random() * (window.innerHeight - btn.offsetHeight - offset);
+        
         btn.style.position = "fixed";
         btn.style.left = x + "px";
         btn.style.top = y + "px";
+        btn.style.transition = "all 0.15s ease-out";
     }
 
     function acceptProposal() {
-        // Simple built-in particles for "Yes"
-        for(let i=0; i<50; i++) {
-            setTimeout(createHeart, i * 20);
+        // Massive burst of hearts
+        for(let i=0; i<100; i++) {
+            setTimeout(createHeart, i * 15);
         }
 
         const ring = document.createElement("div");
@@ -244,12 +269,14 @@ Kya tum mere saath hamesha ke liye chalogi?🫵🏻🥹</b> 💍
         ring.innerHTML = "💍";
         document.body.appendChild(ring);
 
-        document.getElementById("proposal-text").innerHTML = `
-            <h1 class="glow" style="margin-top:20px;">Sarthak ❤️ Dishaa</h1>
-            <p style="font-size: 1.4rem; color: #ff66b2;">She Said YESSS! 💍</p>
-            <p>Forever Starts Now. I love you!</p>
-            <div style="font-size: 40px; margin-top:10px;">♾️</div>
-        `;
+        setTimeout(() => {
+            document.getElementById("proposal-text").innerHTML = `
+                <h1 class="glow" style="font-size: 3rem;">HAMESHA KE LIYE ❤️</h1>
+                <p style="font-size: 1.5rem; color: #ff66b2; font-weight: bold;">Sarthak ❤️ Dishaa</p>
+                <p>I promise to love you across every universe. ♾️</p>
+                <div style="font-size: 50px; margin-top: 15px;">💖🥂✨</div>
+            `;
+        }, 300);
     }
 </script>
 
