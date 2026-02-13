@@ -227,7 +227,7 @@
     function createHeart() {
         const heart = document.createElement("div");
         heart.className = "heart";
-        const icons = ["💖", "💗", "💓", "✨", "🌸", "🌹","😚","😋","😘",🥰"];
+        const icons = ["💖", "💗", "💓", "✨", "🌸", "🌹"];
         heart.innerHTML = icons[Math.floor(Math.random() * icons.length)];
         heart.style.left = Math.random() * 100 + "vw";
         heart.style.fontSize = (Math.random() * 25 + 15) + "px";
