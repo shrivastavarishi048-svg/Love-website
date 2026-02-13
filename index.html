@@ -13,6 +13,8 @@ body{
     background: radial-gradient(circle at bottom,#0d001a,#1a0026,#000000);
     color:white;
     text-align:center;
+    overflow-x:hidden;
+    overflow-y:hidden;
 }
 
 /* Container */
@@ -59,6 +61,19 @@ button:hover{
     line-height:1.8;
     font-size:17px;
 }
+
+/* Floating hearts */
+.heart{
+    position:fixed;
+    bottom:-20px;
+    animation:floatUp 6s linear infinite;
+    font-size:20px;
+}
+
+@keyframes floatUp{
+    0%{transform:translateY(0); opacity:1;}
+    100%{transform:translateY(-100vh); opacity:0;}
+}
 </style>
 </head>
 
@@ -66,7 +81,7 @@ button:hover{
 
 <div class="container">
 
-<h1>Sarthak ❤️ <span class="glow">Dishaa</span></h1>
+<h1>Sarthak 💖 <span class="glow">Dishaa</span></h1>
 <h2>Under The Infinite Sky 🌌</h2>
 
 <button onclick="openLetter()">Open My Heart 💌</button>
@@ -76,13 +91,13 @@ button:hover{
 Dishaa, aaj main dil se tumse ek baat kehna chahta hoon. 
 Jab tum meri life mein aayi thi, mujhe tab nahi pata tha ki tum meri sab kuch ban jaogi.🥹😚 
 Aaj har subah tumhari yaad se shuru hoti hai aur har raat tumhari soch ke saath khatam hoti hai.🫵🏻🥹 
-Tum meri aadat nahi ho, tum meri zarurat ho.😚
+Tum meri aadat nahi ho, tum meri zarurat ho.😚 
 Ab mujhe tumhara addiction ho gaya hai.😩 
-Tumhare bina sab kuch adhoora lagta hai.🥺
+Tumhare bina sab kuch adhoora lagta hai.🥺 
 Mai tumhare saath sirf aaj nahi, balki hamesha rehna chahta hoon. 
 Har hasi, har struggle, har success aur har sapna — sab tumhare saath share karna chahta hoon. 
 Mai promise karta hoon ki main hamesha tumhari respect karunga, tumhe protect karunga aur tumhe kabhi akela mehsoos nahi hone dunga.🥹 
-Dishaa, kya tum meri life partner banogi?🫵🏻🥺
+Dishaa, kya tum meri life partner banogi?🫵🏻🥺 
 Kya tum mere saath hamesha ke liye chalogi?🫵🏻🥹
 </p>
 
@@ -92,6 +107,18 @@ Kya tum mere saath hamesha ke liye chalogi?🫵🏻🥹
 </div>
 
 <script>
+// Floating hearts
+setInterval(()=>{
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.fontSize = (15 + Math.random()*15) + "px";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),6000);
+},500);
+
+// Button functions
 function openLetter(){
     document.getElementById("letter").style.display = "block";
 }
