@@ -1,139 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sarthak 💖 Dishaa | Forever</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarthak 💖 Dishaa | Forever</title>
+    <style>
+        :root {
+            --pink: #ff4da6;
+            --dark-pink: #ff1a75;
+            --glass: rgba(255, 255, 255, 0.1);
+        }
 
-<style>
-    :root {
-        --pink: #ff4da6;
-        --dark-pink: #ff1a75;
-        --glass: rgba(255, 255, 255, 0.1);
-    }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: radial-gradient(circle at center, #1a0026 0%, #000 100%);
+            color: white;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            perspective: 1000px;
+        }
 
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Poppins', 'Segoe UI', sans-serif;
-        background: radial-gradient(circle at center, #1a0026 0%, #000 100%);
-        color: white;
-        height: 100vh;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+        #stars-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
 
-    /* Starry Background Animation */
-    #stars-container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-    }
+        .container {
+            z-index: 10;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+        }
 
-    .container {
-        z-index: 10;
-        width: 90%;
-        max-width: 600px;
-        transition: all 0.5s ease;
-    }
+        h1 { font-size: 2.5rem; margin-bottom: 5px; }
+        
+        .glow {
+            color: var(--pink);
+            text-shadow: 0 0 15px var(--pink), 0 0 30px var(--dark-pink);
+            animation: pulse 2s infinite;
+        }
 
-    h1 { font-size: 2.5rem; margin-bottom: 10px; }
-    
-    .glow {
-        color: var(--pink);
-        text-shadow: 0 0 15px var(--pink), 0 0 30px var(--dark-pink);
-        animation: pulse 2s infinite;
-    }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+        }
 
-    @keyframes pulse {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.7; }
-    }
+        .letter {
+            display: none;
+            background: var(--glass);
+            padding: 25px;
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            margin-top: 20px;
+            line-height: 1.6;
+            animation: slideUp 0.8s ease-out;
+            font-size: 1.05rem;
+        }
 
-    .letter {
-        display: none;
-        background: var(--glass);
-        padding: 30px;
-        border-radius: 24px;
-        backdrop-filter: blur(15px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-        margin-top: 20px;
-        animation: slideUp 0.8s ease-out;
-    }
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
 
-    @keyframes slideUp {
-        from { transform: translateY(50px); opacity: 0; }
-        to { transform: translateY(0); opacity: 1; }
-    }
+        .btn-group {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            min-height: 50px;
+        }
 
-    .btn-group {
-        margin-top: 25px;
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        position: relative;
-    }
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            z-index: 100;
+        }
 
-    button {
-        padding: 12px 35px;
-        border: none;
-        border-radius: 50px;
-        font-size: 1.1rem;
-        font-weight: bold;
-        cursor: pointer;
-        transition: 0.3s;
-    }
+        .btn-main {
+            background: var(--pink);
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 77, 166, 0.4);
+        }
 
-    .btn-main {
-        background: var(--pink);
-        color: white;
-        box-shadow: 0 4px 15px rgba(255, 77, 166, 0.4);
-    }
+        #no-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid white;
+            color: white;
+            transition: 0.1s; /* Faster movement */
+        }
 
-    .btn-main:hover {
-        transform: scale(1.05);
-        background: white;
-        color: var(--dark-pink);
-    }
+        .heart {
+            position: fixed;
+            bottom: -50px;
+            pointer-events: none;
+            z-index: 5;
+            animation: floatUp 4s linear forwards;
+        }
 
-    #no-btn {
-        background: transparent;
-        border: 1px solid white;
-        color: white;
-        position: absolute; /* Dynamic positioning */
-    }
+        @keyframes floatUp {
+            to { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+        }
 
-    .heart {
-        position: fixed;
-        bottom: -20px;
-        pointer-events: none;
-        animation: floatUp 5s linear forwards;
-    }
+        .ring {
+            font-size: 80px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            z-index: 1000;
+            animation: ringPop 0.6s cubic-bezier(0.17, 0.89, 0.32, 1.49) forwards;
+        }
 
-    @keyframes floatUp {
-        to { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
-    }
-
-    .ring {
-        font-size: 100px;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) scale(0);
-        z-index: 100;
-        animation: ringPop 0.8s cubic-bezier(0.17, 0.89, 0.32, 1.49) forwards;
-    }
-
-    @keyframes ringPop {
-        to { transform: translate(-50%, -50%) scale(1); }
-    }
-</style>
+        @keyframes ringPop {
+            to { transform: translate(-50%, -50%) scale(1); }
+        }
+    </style>
 </head>
 <body>
 
@@ -141,105 +140,111 @@
 
 <div class="container" id="main-content">
     <div id="hero-section">
-        <h1>Sarthak 💖 <span class="glow">Dishaa</span></h1>
-        <p style="font-style: italic; opacity: 0.8;">Under The Infinite Sky 🌌</p>
+        <h1 class="glow">Sarthak 💖 Dishaa</h1>
+        <p style="letter-spacing: 2px; opacity: 0.8;">UNDER THE INFINITE SKY 🌌</p>
         <button class="btn-main" onclick="openLetter()">Open My Heart 💌</button>
     </div>
 
     <div class="letter" id="letter">
-        <p>
+        <div id="proposal-text">
             Dishaa, aaj main dil se tumse ek baat kehna chahta hoon. <br><br>
-            Jab tum meri life mein aayi thi, mujhe tab nahi pata tha ki tum meri sab kuch ban jaogi.🥹😚 
-            Aaj har subah tumhari yaad se shuru hoti hai aur har raat tumhari soch ke saath khatam hoti hai.🫵🏻🥹 <br><br>
+            Jab tum meri life mein aayi thi, mujhe tab nahi pata tha ki tum meri sab kuch ban jaogi.🥹😚 <br><br>
             Tum meri aadat nahi ho, <b>tum meri zarurat ho.</b> 
-            Ab mujhe tumhara addiction ho gaya hai.😩 
-            Tumhare bina sab kuch adhoora lagta hai.🥺 <br><br>
+            Ab mujhe tumhara addiction ho gaya hai.😩 <br><br>
             Mai promise karta hoon ki main hamesha tumhari respect karunga, tumhe protect karunga aur tumhe kabhi akela mehsoos nahi hone dunga. 
             <br><br>
             <b>Dishaa, kya tum meri life partner banogi?</b> 💍
-        </p>
-
-        <div class="btn-group">
-            <button class="btn-main" onclick="acceptProposal()">YES! 💖</button>
-            <button id="no-btn" onmouseover="moveNoButton()">No</button>
+            
+            <div class="btn-group">
+                <button class="btn-main" onclick="acceptProposal()">YES! 💖</button>
+                <button id="no-btn" onmouseover="moveNoButton()" onclick="moveNoButton()">No</button>
+            </div>
         </div>
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 <script>
-    // Starry Background
+    // 1. Starry Background
     const canvas = document.getElementById('stars-container');
     const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    let width, height, stars;
 
-    const stars = Array.from({ length: 200 }, () => ({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        size: Math.random() * 2,
-        speed: Math.random() * 0.5
-    }));
+    function initStars() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+        stars = Array.from({ length: 150 }, () => ({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            size: Math.random() * 1.5,
+            speed: Math.random() * 0.4 + 0.1
+        }));
+    }
 
     function drawStars() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.clearRect(0, 0, width, height);
         ctx.fillStyle = "white";
         stars.forEach(star => {
             ctx.beginPath();
             ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
             ctx.fill();
             star.y -= star.speed;
-            if (star.y < 0) star.y = canvas.height;
+            if (star.y < 0) star.y = height;
         });
         requestAnimationFrame(drawStars);
     }
+
+    window.addEventListener('resize', initStars);
+    initStars();
     drawStars();
 
-    // Floating Hearts
-    setInterval(() => {
+    // 2. Floating Hearts (The magic you asked for)
+    function createHeart() {
         const heart = document.createElement("div");
         heart.className = "heart";
-        heart.innerHTML = ["💖", "💗", "🌸", "✨"][Math.floor(Math.random() * 4)];
+        const emojis = ["💖", "💗", "💓", "✨", "🌸"];
+        heart.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
         heart.style.left = Math.random() * 100 + "vw";
-        heart.style.fontSize = (10 + Math.random() * 20) + "px";
+        heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+        heart.style.duration = (Math.random() * 3 + 3) + "s";
         document.body.appendChild(heart);
         setTimeout(() => heart.remove(), 5000);
-    }, 400);
+    }
+    setInterval(createHeart, 400);
 
+    // 3. UI Logic
     function openLetter() {
         document.getElementById("hero-section").style.display = "none";
         document.getElementById("letter").style.display = "block";
     }
 
-    // The "Runaway" No Button
     function moveNoButton() {
-        const x = Math.random() * (window.innerWidth - 100);
-        const y = Math.random() * (window.innerHeight - 50);
         const btn = document.getElementById("no-btn");
+        // Ensures the button moves within the visible screen
+        const x = Math.random() * (window.innerWidth - btn.offsetWidth);
+        const y = Math.random() * (window.innerHeight - btn.offsetHeight);
         btn.style.position = "fixed";
         btn.style.left = x + "px";
         btn.style.top = y + "px";
     }
 
     function acceptProposal() {
-        // Confetti effect
-        confetti({
-            particleCount: 150,
-            spread: 70,
-            origin: { y: 0.6 },
-            colors: ['#ff4da6', '#ff1a75', '#ffffff']
-        });
+        // Simple built-in particles for "Yes"
+        for(let i=0; i<50; i++) {
+            setTimeout(createHeart, i * 20);
+        }
 
-        // Add the ring
         const ring = document.createElement("div");
         ring.className = "ring";
         ring.innerHTML = "💍";
         document.body.appendChild(ring);
 
-        // Success Text
-        document.getElementById("letter").innerHTML = `
-            <h1 class="glow">IT'S OFFICIAL! 💍</h1>
-            <p style="font-size: 1.5rem;">Sarthak ❤️ Dishaa <br> Forever Starts Now.</p>
+        document.getElementById("proposal-text").innerHTML = `
+            <h1 class="glow" style="margin-top:20px;">Sarthak ❤️ Dishaa</h1>
+            <p style="font-size: 1.4rem; color: #ff66b2;">She Said YESSS! 💍</p>
+            <p>Forever Starts Now. I love you!</p>
+            <div style="font-size: 40px; margin-top:10px;">♾️</div>
         `;
     }
 </script>
