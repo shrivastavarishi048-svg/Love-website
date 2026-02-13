@@ -3,129 +3,245 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sarthak 💖 Dishaa</title>
+<title>Sarthak 💖 Dishaa | Forever</title>
 
 <style>
-body{
-    margin:0;
-    padding:0;
-    font-family:'Segoe UI', sans-serif;
-    background: radial-gradient(circle at bottom,#0d001a,#1a0026,#000000);
-    color:white;
-    text-align:center;
-    overflow-x:hidden;
-    overflow-y:hidden;
-}
+    :root {
+        --pink: #ff4da6;
+        --dark-pink: #ff1a75;
+        --glass: rgba(255, 255, 255, 0.1);
+    }
 
-/* Container */
-.container{
-    padding:50px 20px;
-}
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', 'Segoe UI', sans-serif;
+        background: radial-gradient(circle at center, #1a0026 0%, #000 100%);
+        color: white;
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-/* Glow effect */
-.glow{
-    color:#ff66b2;
-    text-shadow:0 0 10px #ff4da6, 0 0 20px #ff1a75;
-}
+    /* Starry Background Animation */
+    #stars-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
 
-/* Button style */
-button{
-    padding:15px 30px;
-    border:none;
-    border-radius:30px;
-    background:#ff4da6;
-    color:white;
-    font-size:18px;
-    font-weight:bold;
-    margin-top:25px;
-    cursor:pointer;
-    transition:0.3s;
-}
+    .container {
+        z-index: 10;
+        width: 90%;
+        max-width: 600px;
+        transition: all 0.5s ease;
+    }
 
-button:hover{
-    background:white;
-    color:#ff0080;
-}
+    h1 { font-size: 2.5rem; margin-bottom: 10px; }
+    
+    .glow {
+        color: var(--pink);
+        text-shadow: 0 0 15px var(--pink), 0 0 30px var(--dark-pink);
+        animation: pulse 2s infinite;
+    }
 
-/* Letter box */
-.letter{
-    display:none;
-    margin-top:30px;
-    max-width:700px;
-    margin-left:auto;
-    margin-right:auto;
-    background:rgba(255,255,255,0.1);
-    padding:25px;
-    border-radius:20px;
-    backdrop-filter:blur(10px);
-    line-height:1.8;
-    font-size:17px;
-}
+    @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.7; }
+    }
 
-/* Floating hearts */
-.heart{
-    position:fixed;
-    bottom:-20px;
-    animation:floatUp 6s linear infinite;
-    font-size:20px;
-}
+    .letter {
+        display: none;
+        background: var(--glass);
+        padding: 30px;
+        border-radius: 24px;
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+        margin-top: 20px;
+        animation: slideUp 0.8s ease-out;
+    }
 
-@keyframes floatUp{
-    0%{transform:translateY(0); opacity:1;}
-    100%{transform:translateY(-100vh); opacity:0;}
-}
+    @keyframes slideUp {
+        from { transform: translateY(50px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+
+    .btn-group {
+        margin-top: 25px;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        position: relative;
+    }
+
+    button {
+        padding: 12px 35px;
+        border: none;
+        border-radius: 50px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .btn-main {
+        background: var(--pink);
+        color: white;
+        box-shadow: 0 4px 15px rgba(255, 77, 166, 0.4);
+    }
+
+    .btn-main:hover {
+        transform: scale(1.05);
+        background: white;
+        color: var(--dark-pink);
+    }
+
+    #no-btn {
+        background: transparent;
+        border: 1px solid white;
+        color: white;
+        position: absolute; /* Dynamic positioning */
+    }
+
+    .heart {
+        position: fixed;
+        bottom: -20px;
+        pointer-events: none;
+        animation: floatUp 5s linear forwards;
+    }
+
+    @keyframes floatUp {
+        to { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+    }
+
+    .ring {
+        font-size: 100px;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        z-index: 100;
+        animation: ringPop 0.8s cubic-bezier(0.17, 0.89, 0.32, 1.49) forwards;
+    }
+
+    @keyframes ringPop {
+        to { transform: translate(-50%, -50%) scale(1); }
+    }
 </style>
 </head>
-
 <body>
 
-<div class="container">
+<canvas id="stars-container"></canvas>
 
-<h1>Sarthak 💖 <span class="glow">Dishaa</span></h1>
-<h2>Under The Infinite Sky 🌌</h2>
+<div class="container" id="main-content">
+    <div id="hero-section">
+        <h1>Sarthak 💖 <span class="glow">Dishaa</span></h1>
+        <p style="font-style: italic; opacity: 0.8;">Under The Infinite Sky 🌌</p>
+        <button class="btn-main" onclick="openLetter()">Open My Heart 💌</button>
+    </div>
 
-<button onclick="openLetter()">Open My Heart 💌</button>
+    <div class="letter" id="letter">
+        <p>
+            Dishaa, aaj main dil se tumse ek baat kehna chahta hoon. <br><br>
+            Jab tum meri life mein aayi thi, mujhe tab nahi pata tha ki tum meri sab kuch ban jaogi.🥹😚 
+            Aaj har subah tumhari yaad se shuru hoti hai aur har raat tumhari soch ke saath khatam hoti hai.🫵🏻🥹 <br><br>
+            Tum meri aadat nahi ho, <b>tum meri zarurat ho.</b> 
+            Ab mujhe tumhara addiction ho gaya hai.😩 
+            Tumhare bina sab kuch adhoora lagta hai.🥺 <br><br>
+            Mai promise karta hoon ki main hamesha tumhari respect karunga, tumhe protect karunga aur tumhe kabhi akela mehsoos nahi hone dunga. 
+            <br><br>
+            <b>Dishaa, kya tum meri life partner banogi?</b> 💍
+        </p>
 
-<div class="letter" id="letter">
-<p>
-Dishaa, aaj main dil se tumse ek baat kehna chahta hoon. 
-Jab tum meri life mein aayi thi, mujhe tab nahi pata tha ki tum meri sab kuch ban jaogi.🥹😚 
-Aaj har subah tumhari yaad se shuru hoti hai aur har raat tumhari soch ke saath khatam hoti hai.🫵🏻🥹 
-Tum meri aadat nahi ho, tum meri zarurat ho.😚 
-Ab mujhe tumhara addiction ho gaya hai.😩 
-Tumhare bina sab kuch adhoora lagta hai.🥺 
-Mai tumhare saath sirf aaj nahi, balki hamesha rehna chahta hoon. 
-Har hasi, har struggle, har success aur har sapna — sab tumhare saath share karna chahta hoon. 
-Mai promise karta hoon ki main hamesha tumhari respect karunga, tumhe protect karunga aur tumhe kabhi akela mehsoos nahi hone dunga.🥹 
-Dishaa, kya tum meri life partner banogi?🫵🏻🥺 
-Kya tum mere saath hamesha ke liye chalogi?🫵🏻🥹
-</p>
-
-<button onclick="showMessage()">YES 💖</button>
+        <div class="btn-group">
+            <button class="btn-main" onclick="acceptProposal()">YES! 💖</button>
+            <button id="no-btn" onmouseover="moveNoButton()">No</button>
+        </div>
+    </div>
 </div>
 
-</div>
-
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 <script>
-// Floating hearts
-setInterval(()=>{
-    let heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerHTML = "💖";
-    heart.style.left = Math.random()*100 + "vw";
-    heart.style.fontSize = (15 + Math.random()*15) + "px";
-    document.body.appendChild(heart);
-    setTimeout(()=>heart.remove(),6000);
-},500);
+    // Starry Background
+    const canvas = document.getElementById('stars-container');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-// Button functions
-function openLetter(){
-    document.getElementById("letter").style.display = "block";
-}
+    const stars = Array.from({ length: 200 }, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 2,
+        speed: Math.random() * 0.5
+    }));
 
-function showMessage(){
-    alert("Forever Starts Now 💖✨");
-}
+    function drawStars() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "white";
+        stars.forEach(star => {
+            ctx.beginPath();
+            ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+            ctx.fill();
+            star.y -= star.speed;
+            if (star.y < 0) star.y = canvas.height;
+        });
+        requestAnimationFrame(drawStars);
+    }
+    drawStars();
+
+    // Floating Hearts
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = ["💖", "💗", "🌸", "✨"][Math.floor(Math.random() * 4)];
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (10 + Math.random() * 20) + "px";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+    }, 400);
+
+    function openLetter() {
+        document.getElementById("hero-section").style.display = "none";
+        document.getElementById("letter").style.display = "block";
+    }
+
+    // The "Runaway" No Button
+    function moveNoButton() {
+        const x = Math.random() * (window.innerWidth - 100);
+        const y = Math.random() * (window.innerHeight - 50);
+        const btn = document.getElementById("no-btn");
+        btn.style.position = "fixed";
+        btn.style.left = x + "px";
+        btn.style.top = y + "px";
+    }
+
+    function acceptProposal() {
+        // Confetti effect
+        confetti({
+            particleCount: 150,
+            spread: 70,
+            origin: { y: 0.6 },
+            colors: ['#ff4da6', '#ff1a75', '#ffffff']
+        });
+
+        // Add the ring
+        const ring = document.createElement("div");
+        ring.className = "ring";
+        ring.innerHTML = "💍";
+        document.body.appendChild(ring);
+
+        // Success Text
+        document.getElementById("letter").innerHTML = `
+            <h1 class="glow">IT'S OFFICIAL! 💍</h1>
+            <p style="font-size: 1.5rem;">Sarthak ❤️ Dishaa <br> Forever Starts Now.</p>
+        `;
+    }
 </script>
 
 </body>
