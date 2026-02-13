@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,46 +13,20 @@ body{
     background: radial-gradient(circle at bottom,#0d001a,#1a0026,#000000);
     color:white;
     text-align:center;
-    overflow:hidden;
-}
-
-/* Stars */
-.star{
-    position:absolute;
-    background:white;
-    border-radius:50%;
-    animation:twinkle 2s infinite alternate;
-}
-@keyframes twinkle{
-    from{opacity:0.3;}
-    to{opacity:1;}
-}
-
-/* Rose petals */
-.petal{
-    position:absolute;
-    font-size:20px;
-    animation:fall linear infinite;
-}
-@keyframes fall{
-    from{transform:translateY(-10vh) rotate(0deg);}
-    to{transform:translateY(110vh) rotate(360deg);}
 }
 
 /* Container */
 .container{
-    position:relative;
-    z-index:2;
-    padding:40px 20px;
+    padding:50px 20px;
 }
 
-/* Glow */
+/* Glow effect */
 .glow{
     color:#ff66b2;
-    text-shadow:0 0 10px #ff4da6,0 0 20px #ff1a75;
+    text-shadow:0 0 10px #ff4da6, 0 0 20px #ff1a75;
 }
 
-/* Button */
+/* Button style */
 button{
     padding:15px 30px;
     border:none;
@@ -61,65 +35,34 @@ button{
     color:white;
     font-size:18px;
     font-weight:bold;
-    margin-top:20px;
+    margin-top:25px;
     cursor:pointer;
     transition:0.3s;
 }
+
 button:hover{
     background:white;
     color:#ff0080;
 }
 
-/* Letter */
+/* Letter box */
 .letter{
     display:none;
     margin-top:30px;
-    max-width:600px;
+    max-width:700px;
     margin-left:auto;
     margin-right:auto;
     background:rgba(255,255,255,0.1);
     padding:25px;
     border-radius:20px;
     backdrop-filter:blur(10px);
-}
-
-/* 3D Ring */
-.ring{
-    font-size:80px;
-    margin-top:20px;
-    animation:rotateRing 2s linear infinite;
-}
-@keyframes rotateRing{
-    from{transform:rotateY(0deg);}
-    to{transform:rotateY(360deg);}
+    line-height:1.8;
+    font-size:17px;
 }
 </style>
 </head>
 
 <body>
-
-<script>
-// Stars
-for(let i=0;i<100;i++){
-    let star=document.createElement("div");
-    star.className="star";
-    star.style.width=Math.random()*3+"px";
-    star.style.height=star.style.width;
-    star.style.top=Math.random()*100+"vh";
-    star.style.left=Math.random()*100+"vw";
-    document.body.appendChild(star);
-}
-
-// Rose petals
-for(let i=0;i<20;i++){
-    let petal=document.createElement("div");
-    petal.className="petal";
-    petal.innerHTML="🌹";
-    petal.style.left=Math.random()*100+"vw";
-    petal.style.animationDuration=(5+Math.random()*5)+"s";
-    document.body.appendChild(petal);
-}
-</script>
 
 <div class="container">
 
@@ -129,48 +72,32 @@ for(let i=0;i<20;i++){
 <button onclick="openLetter()">Open My Heart 💌</button>
 
 <div class="letter" id="letter">
-<p id="typeText" style="line-height:1.8; font-size:17px;"></p>
+<p>
+Dishaa, aaj main dil se tumse ek baat kehna chahta hoon. 
+Jab tum meri life mein aayi thi, mujhe tab nahi pata tha ki tum meri sab kuch ban jaogi.🥹😚 
+Aaj har subah tumhari yaad se shuru hoti hai aur har raat tumhari soch ke saath khatam hoti hai.🫵🏻🥹 
+Tum meri aadat nahi ho, tum meri zarurat ho.😚
+Ab mujhe tumhara addiction ho gaya hai.😩 
+Tumhare bina sab kuch adhoora lagta hai.🥺
+Mai tumhare saath sirf aaj nahi, balki hamesha rehna chahta hoon. 
+Har hasi, har struggle, har success aur har sapna — sab tumhare saath share karna chahta hoon. 
+Mai promise karta hoon ki main hamesha tumhari respect karunga, tumhe protect karunga aur tumhe kabhi akela mehsoos nahi hone dunga.🥹 
+Dishaa, kya tum meri life partner banogi?🫵🏻🥺
+Kya tum mere saath hamesha ke liye chalogi?🫵🏻🥹
+</p>
 
-<div id="proposal" style="display:none;">
-<div class="ring">💍</div>
-<h2 class="glow">Will You Be With Me Forever?</h2>
-<button onclick="celebrate()">YES 💖</button>
-</div>
+<button onclick="showMessage()">YES 💖</button>
 </div>
 
 </div>
 
 <script>
-const message ="Dishaa, aaj main dil se tumse ek baat kehna chahta hoon. 
-Jab tum meri life mein aayi thi, mujhe tab nahi pata tha ki tum meri sb kuch ban jaogi. 
-Aaj har subah tumhari yaad se shuru hoti hai aur har raat tumhari soch ke saath khatam hoti hai. 
-Tum meri aadat nahi ho, tum meri zarurat ho.
-Ab mujhe tumhara addiction ho gaya hai.
-Tumhare bina sab kuch adhoora lagta hai. 
-Mai tumhare saath sirf aaj nahi, balki hamesha rehena chahta huu. 
-Har hasi, har struggle, har success aur har sapna — sab tumhare saath share karna chahta hoon. 
-Mai promise karta hoon ki main hamesha tumhari respect karunga, tumhe protect karunga aur tumhe kabhi akela mehsoos nahi hone dunga. 
-Dishaa,kya tum meri life partner banogi? 
-Kya tum mere saath hamesha ke liye chalogi?;
-
-let i=0;
-function typeWriter(){
-    if(i < message.length){
-        document.getElementById("typeText").innerHTML += message.charAt(i);
-        i++;
-        setTimeout(typeWriter,40);
-    } else{
-        document.getElementById("proposal").style.display="block";
-    }
-}
-
 function openLetter(){
-    document.getElementById("letter").style.display="block";
-    typeWriter();
+    document.getElementById("letter").style.display = "block";
 }
 
-function celebrate(){
-    alert("She Said YESSS 🥹🫶🏻💍✨ FOREVER STARTS NOW!");
+function showMessage(){
+    alert("Forever Starts Now 💖✨");
 }
 </script>
 
